@@ -165,7 +165,8 @@ function handleYearChange() {
     const currentYear = document.getElementById('currentYear').value;
     const firstYearOption = document.getElementById('firstYearOption');
     
-    if (currentYear && currentYear !== '2') {
+    // Show first year option for 2nd year, 3rd year, and graduated students
+    if (currentYear && (currentYear === '2' || currentYear === '3' || currentYear === 'graduated')) {
         firstYearOption.style.display = 'block';
         firstYearOption.style.animation = 'fadeInSlide 0.5s ease-out';
     } else {
@@ -403,10 +404,15 @@ function displayResults(gpaResult) {
     document.getElementById('resultDegree').textContent = studentData.degree;
     document.getElementById('resultBatch').textContent = studentData.batch;
     
-    // Display GPA results
-    const finalGPA = (gpaResult.finalPercentage / 25).toFixed(2); // Convert to 4.0 scale
-    document.getElementById('finalGPA').textContent = finalGPA;
+    // Display GPA results - only show percentage, not GPA scale
+    document.getElementById('finalGPA').style.display = 'none'; // Hide GPA number
     document.getElementById('finalPercentage').textContent = `${gpaResult.finalPercentage.toFixed(1)}%`;
+    document.getElementById('finalPercentage').style.fontSize = '3rem';
+    document.getElementById('finalPercentage').style.fontWeight = '700';
+    document.getElementById('finalPercentage').style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+    document.getElementById('finalPercentage').style.webkitBackgroundClip = 'text';
+    document.getElementById('finalPercentage').style.webkitTextFillColor = 'transparent';
+    document.getElementById('finalPercentage').style.backgroundClip = 'text';
     
     // Display classification
     const classificationElement = document.getElementById('classification');
