@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSBM GPA Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header with University Logos -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo-placeholder nsbm-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>NSBM</span>
+                </div>
+                <div class="partnership-text">
+                    <i class="fas fa-handshake"></i>
+                    <span>Affiliated with</span>
+                </div>
+                <div class="logo-placeholder plymouth-logo">
+                    <i class="fas fa-university"></i>
+                    <span>Plymouth</span>
+                </div>
+            </div>
+            <h1 class="main-title">GPA Calculator</h1>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-steps">
+                <div class="step active" data-step="1">
+                    <i class="fas fa-user"></i>
+                    <span>Info</span>
+                </div>
+                <div class="step" data-step="2">
+                    <i class="fas fa-calendar"></i>
+                    <span>Year</span>
+                </div>
+                <div class="step" data-step="3">
+                    <i class="fas fa-book"></i>
+                    <span>Modules</span>
+                </div>
+                <div class="step" data-step="4">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Results</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="form-container">
+            <!-- Step 1: Student Information -->
+            <div class="form-step active" id="step1">
+                <h2>Student Information</h2>
+                <div class="form-group">
+                    <label for="studentName">
+                        <i class="fas fa-user"></i>
+                        Full Name
+                    </label>
+                    <input type="text" id="studentName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="degree">
+                        <i class="fas fa-graduation-cap"></i>
+                        Degree Program
+                    </label>
+                    <input type="text" id="degree" placeholder="e.g., BSc (Hons) Computer Science" required>
+                </div>
+                <div class="form-group">
+                    <label for="batch">
+                        <i class="fas fa-users"></i>
+                        Batch
+                    </label>
+                    <input type="text" id="batch" placeholder="e.g., Batch 25" required>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="nextStep()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Step 2: Year Selection -->
+            <div class="form-step" id="step2">
+                <h2>Academic Year Selection</h2>
+                <div class="form-group">
+                    <label for="currentYear">
+                        <i class="fas fa-calendar-alt"></i>
+                        Which year are you currently in?
+                    </label>
+                    <select id="currentYear" onchange="handleYearChange()">
+                        <option value="">Select your current year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="graduated">Graduated</option>
+                    </select>
+                </div>
+                <div class="form-group" id="firstYearOption" style="display: none;">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="includeFirstYear">
+                        <span class="checkmark"></span>
+                        Include 1st Year modules (Not calculated in GPA - for reference only)
+                    </label>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep()">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Module Entry -->
+            <div class="form-step" id="step3">
+                <h2>Module Information</h2>
+                <div id="moduleContainer">
+                    <!-- Dynamic module forms will be inserted here -->
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="calculateGPA()">
+                        Calculate GPA <i class="fas fa-calculator"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 4: Results -->
+            <div class="form-step" id="step4">
+                <h2>GPA Results</h2>
+                <div class="results-container">
+                    <div class="student-info-card">
+                        <h3><i class="fas fa-user-graduate"></i> Student Details</h3>
+                        <div class="info-row">
+                            <span class="label">Name:</span>
+                            <span class="value" id="resultName"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Degree:</span>
+                            <span class="value" id="resultDegree"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Batch:</span>
+                            <span class="value" id="resultBatch"></span>
+                        </div>
+                    </div>
+
+                    <div class="gpa-card">
+                        <h3><i class="fas fa-trophy"></i> Final Results</h3>
+                        <div class="gpa-display">
+                            <div class="gpa-value" id="finalGPA">-</div>
+                            <div class="gpa-percentage" id="finalPercentage">-</div>
+                        </div>
+                        <div class="classification" id="classification">-</div>
+                    </div>
+
+                    <div class="modules-summary" id="modulesSummary">
+                        <!-- Module details will be inserted here -->
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="resetCalculator()">
+                        <i class="fas fa-redo"></i> New Calculation
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="printResults()">
+                        <i class="fas fa-print"></i> Print Results
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
