@@ -55,8 +55,8 @@ body {
 }
 
 .logo-img {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
     border-radius: 8px;
     background: white;
@@ -644,8 +644,8 @@ body {
     }
     
     .logo-img {
-        width: 50px;
-        height: 50px;
+        width: 100px;
+        height: 100px;
     }
     
     .logo-placeholder span {
