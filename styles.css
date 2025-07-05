@@ -791,3 +791,190 @@ body {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* Add these to your existing styles.css */
+
+/* Dark Mode Variables */
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --border-color: #dee2e6;
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode {
+    --bg-color: #1a1a2e;
+    --text-color: #f8f9fa;
+    --card-bg: #16213e;
+    --border-color: #2d4059;
+    --primary-gradient: linear-gradient(135deg, #4a00e0 0%, #8e2de2 100%);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toggle-checkbox {
+    display: none;
+}
+
+.toggle-label {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-label i {
+    position: absolute;
+    top: 6px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.toggle-label .fa-sun {
+    left: 6px;
+    color: #f1c40f;
+}
+
+.toggle-label .fa-moon {
+    right: 6px;
+    color: #34495e;
+}
+
+.toggle-ball {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #4a00e0;
+}
+
+.toggle-checkbox:checked + .toggle-label .toggle-ball {
+    transform: translateX(30px);
+}
+
+/* Chart Container */
+.chart-container {
+    margin-top: 30px;
+    height: 250px;
+    width: 100%;
+}
+
+/* Enhanced Module Items with Grade Colors */
+.module-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.module-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+}
+
+.module-item.excellent {
+    border-left-color: #2ecc71;
+}
+.module-item.good {
+    border-left-color: #3498db;
+}
+.module-item.average {
+    border-left-color: #f39c12;
+}
+.module-item.poor {
+    border-left-color: #e74c3c;
+}
+
+/* Print Specific Styles */
+@media print {
+    .dark-mode-toggle {
+        display: none;
+    }
+    
+    .chart-container {
+        page-break-inside: avoid;
+        height: 300px;
+    }
+    
+    .results-container {
+        display: block;
+    }
+    
+    .gpa-card, .student-info-card {
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+    }
+    
+    @page {
+        size: auto;
+        margin: 10mm;
+    }
+}
+
+/* Smoother Transitions */
+.form-step {
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.slide-out-left {
+    animation: slideOutLeft 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.slide-out-right {
+    animation: slideOutRight 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Dark Mode Body Styles */
+body {
+    background: var(--primary-gradient);
+    color: var(--text-color);
+    transition: background 0.5s ease, color 0.3s ease;
+}
+
+.header, .form-container, .student-info-card, 
+.gpa-card, .modules-summary, .year-section {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+    transition: background 0.5s ease, border-color 0.5s ease;
+}
+
+.form-group input, .form-group select, .checkbox-label {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.module-item {
+    background: var(--card-bg);
+}
