@@ -792,8 +792,6 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Add these to your existing styles.css */
-
 /* Dark Mode Variables */
 :root {
     --bg-color: #f8f9fa;
@@ -807,7 +805,7 @@ body {
 .dark-mode {
     --bg-color: #1a1a2e;
     --text-color: #f8f9fa;
-    --card-bg: #16213e;
+    --card-bg: rgba(22, 33, 62, 0.95);
     --border-color: #2d4059;
     --primary-gradient: linear-gradient(135deg, #4a00e0 0%, #8e2de2 100%);
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -954,27 +952,113 @@ body {
     animation: slideInLeft 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 
-/* Dark Mode Body Styles */
-body {
-    background: var(--primary-gradient);
-    color: var(--text-color);
-    transition: background 0.5s ease, color 0.3s ease;
+/* Enhanced Dark Mode Styles */
+.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
-.header, .form-container, .student-info-card, 
-.gpa-card, .modules-summary, .year-section {
-    background: var(--card-bg);
-    color: var(--text-color);
-    border-color: var(--border-color);
-    transition: background 0.5s ease, border-color 0.5s ease;
+.dark-mode body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #f8f9fa;
 }
 
-.form-group input, .form-group select, .checkbox-label {
-    background: var(--card-bg);
-    border-color: var(--border-color);
-    color: var(--text-color);
+.dark-mode .header, 
+.dark-mode .form-container, 
+.dark-mode .student-info-card, 
+.dark-mode .gpa-card, 
+.dark-mode .modules-summary, 
+.dark-mode .year-section {
+    background: rgba(22, 33, 62, 0.95);
+    border-color: #2d4059;
+    color: #f8f9fa;
 }
 
-.module-item {
-    background: var(--card-bg);
+.dark-mode .form-step h2,
+.dark-mode .year-title,
+.dark-mode .semester-title,
+.dark-mode .student-info-card h3,
+.dark-mode .gpa-card h3,
+.dark-mode .modules-summary h3,
+.dark-mode .year-modules h4 {
+    color: #f8f9fa;
+}
+
+.dark-mode .form-group label,
+.dark-mode .label,
+.dark-mode .value,
+.dark-mode .checkmark {
+    color: #f8f9fa;
+}
+
+.dark-mode .form-group input,
+.dark-mode .form-group select,
+.dark-mode .checkbox-label {
+    background: rgba(22, 33, 62, 0.8);
+    border-color: #2d4059;
+    color: #f8f9fa;
+}
+
+.dark-mode .form-group input::placeholder {
+    color: #adb5bd;
+}
+
+.dark-mode .form-group input:focus,
+.dark-mode .form-group select:focus {
+    background: rgba(22, 33, 62, 0.9);
+    border-color: #4a00e0;
+    box-shadow: 0 0 0 3px rgba(74, 0, 224, 0.2);
+}
+
+.dark-mode .checkbox-label:hover {
+    border-color: #4a00e0;
+    background: rgba(22, 33, 62, 0.9);
+}
+
+.dark-mode .module-item,
+.dark-mode .info-row {
+    background: rgba(22, 33, 62, 0.6);
+    border-color: #2d4059;
+    color: #f8f9fa;
+}
+
+.dark-mode .module-name,
+.dark-mode .module-mark {
+    color: #f8f9fa;
+}
+
+.dark-mode .module-mark {
+    color: #8e2de2;
+}
+
+.dark-mode .info-row {
+    border-bottom-color: #2d4059;
+}
+
+.dark-mode .logo-placeholder span,
+.dark-mode .partnership-text {
+    color: #f8f9fa;
+}
+
+.dark-mode .gpa-percentage {
+    color: #adb5bd;
+}
+
+.dark-mode .student-info-card,
+.dark-mode .gpa-card {
+    background: linear-gradient(135deg, rgba(22, 33, 62, 0.95), rgba(26, 26, 46, 0.95));
+}
+
+.dark-mode .modules-summary {
+    background: rgba(22, 33, 62, 0.95);
+}
+
+.dark-mode .year-section {
+    background: rgba(22, 33, 62, 0.6);
+}
+
+/* Ensure buttons maintain their colors in dark mode */
+.dark-mode .btn-primary,
+.dark-mode .btn-secondary,
+.dark-mode .btn-success {
+    color: white;
 }
